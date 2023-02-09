@@ -4,6 +4,7 @@ import winterSound from "./assets/sounds/winter.mp3";
 
 export default [
     {
+        id: 1,
         name: "Rain",
         "icon-class": "icon-rain",
         "background-class": "bg-rainy",
@@ -12,6 +13,7 @@ export default [
         music: [rainSound],
     },
     {
+        id: 2,
         name: "Summer",
         "icon-class": "icon-sun",
         "background-class": "bg-summer",
@@ -20,6 +22,7 @@ export default [
         music: [summerSound],
     },
     {
+        id: 3,
         name: "Winter",
         "icon-class": "icon-snow",
         "background-class": "bg-winter",

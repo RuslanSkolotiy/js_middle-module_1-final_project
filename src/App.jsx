@@ -8,6 +8,7 @@ const audio = new Audio();
 const App = function () {
     const [category, setCategory] = React.useState(data[0]);
     const [volume, setVolume] = React.useState(0.5);
+    const [playing, setPlaying] = React.useState(false);
 
     const getRamdomMusic = (array) => {
         return array[Math.floor(Math.random() * array.length)];
@@ -19,9 +20,24 @@ const App = function () {
         audio.src = getRamdomMusic(musicCategory.music);
     };
 
+    const pause = () => {
+        console.log("audio.played", audio.played);
+        if (audio.paused) {
+            audio.play();
+            setPlaying(true);
+        } else {
+            audio.pause();
+            setPlaying(false);
+        }
+    };
+
     const selectCategory = (musicCategory) => {
         setCategory(musicCategory);
-        playRandomMusicFromCaregory(musicCategory);
+        if (musicCategory.id === category.id) {
+            pause();
+        } else {
+            playRandomMusicFromCaregory(musicCategory);
+        }
     };
 
     React.useEffect(() => {
@@ -35,6 +51,7 @@ const App = function () {
         };
         const onCanPlay = () => {
             console.log("onCanPlay");
+            setPlaying(true);
             audio.play();
         };
         audio.addEventListener("ended", onEndPlay);
@@ -51,17 +68,22 @@ const App = function () {
             <div className="menu">
                 <h1>Weather sounds</h1>
                 <div className="buttons">
-                    {data.map((item, index) => {
+                    {data.map((item) => {
                         return (
                             <div
-                                key={index}
+                                key={item.id}
                                 className={
                                     item["icon-class"] +
                                     " " +
-                                    item["background-class"]
+                                    item["background-class"] +
+                                    " " +
+                                    (playing && item.id === category.id
+                                        ? "playing"
+                                        : "")
                                 }
                                 onClick={() => selectCategory(item)}
-                            ></div>
+                            >
+                            </div>
                         );
                     })}
                 </div>

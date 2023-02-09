@@ -66,7 +66,7 @@ h1 {
             width: 150px;
             height: 150px;
             border-radius: 10px;
-            border: white 1px solid;
+            border: white 3px solid;
             background-size: auto 100%;
             background-position: center center;
             cursor: pointer;
@@ -119,5 +119,19 @@ h1 {
         border-radius: 10px;
         border: 1px white solid;
         cursor: pointer;
+    }
+}
+
+.playing {
+    animation: blink 3s infinite; 
+}
+@keyframes blink {
+    0%,
+    100% {
+        border-color: white;
+    }
+
+    50% {
+        border-color: #663399;
     }
 }
