@@ -15,13 +15,11 @@ const App = function () {
     };
 
     const playRandomMusicFromCaregory = (musicCategory) => {
-        console.log("musicCategory", musicCategory);
         audio.pause();
         audio.src = getRamdomMusic(musicCategory.music);
     };
 
     const pause = () => {
-        console.log("audio.played", audio.played);
         if (audio.paused) {
             audio.play();
             setPlaying(true);
@@ -33,7 +31,7 @@ const App = function () {
 
     const selectCategory = (musicCategory) => {
         setCategory(musicCategory);
-        if (musicCategory.id === category.id) {
+        if (musicCategory.id === category.id && audio.readyState >= 2) {
             pause();
         } else {
             playRandomMusicFromCaregory(musicCategory);
@@ -46,11 +44,9 @@ const App = function () {
 
     React.useEffect(() => {
         const onEndPlay = () => {
-            console.log("onEndPlay");
             playRandomMusicFromCaregory(category);
         };
         const onCanPlay = () => {
-            console.log("onCanPlay");
             setPlaying(true);
             audio.play();
         };
