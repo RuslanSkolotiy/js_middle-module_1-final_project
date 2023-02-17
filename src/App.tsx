@@ -3,18 +3,28 @@ import Background from "./components/Background";
 import Volume from "./components/Volume";
 import data from "./data";
 
-const audio = new Audio();
+const audio: HTMLAudioElement = new Audio();
+
+type MusicCategory = {
+    id: number;
+    name: string;
+    "icon-class": string;
+    "background-class": string;
+    description: string;
+    title: string;
+    music: string[];
+};
 
 const App = function () {
     const [category, setCategory] = React.useState(data[0]);
     const [volume, setVolume] = React.useState(0.5);
     const [playing, setPlaying] = React.useState(false);
 
-    const getRamdomMusic = (array) => {
+    const getRamdomMusic = (array: string[]) => {
         return array[Math.floor(Math.random() * array.length)];
     };
 
-    const playRandomMusicFromCaregory = (musicCategory) => {
+    const playRandomMusicFromCaregory = (musicCategory: MusicCategory) => {
         audio.pause();
         audio.src = getRamdomMusic(musicCategory.music);
     };
@@ -29,7 +39,7 @@ const App = function () {
         }
     };
 
-    const selectCategory = (musicCategory) => {
+    const selectCategory = (musicCategory: MusicCategory) => {
         setCategory(musicCategory);
         if (musicCategory.id === category.id && audio.readyState >= 2) {
             pause();
@@ -78,13 +88,14 @@ const App = function () {
                                         : "")
                                 }
                                 onClick={() => selectCategory(item)}
-                            >
-                            </div>
+                            ></div>
                         );
                     })}
                 </div>
             </div>
-            <Volume onChange={(value) => setVolume(value / 100)}></Volume>
+            <Volume
+                onChange={(value: number) => setVolume(value / 100)}
+            ></Volume>
         </>
     );
 };

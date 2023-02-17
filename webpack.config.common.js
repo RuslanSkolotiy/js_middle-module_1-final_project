@@ -1,11 +1,11 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const CopyPlugin = require("copy-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require("path");
 
 module.exports = {
     context: path.resolve(__dirname, "src"),
-    entry: "./index.js",
+    entry: "./index.tsx",
     output: {
         path: path.resolve(__dirname, "./dist"),
         filename: "[name].[contenthash].js",
@@ -54,4 +54,4 @@ module.exports = {
             },
         ],
     },
-}
+};

@@ -10,6 +10,8 @@
     "author": "Ruslan Skololiy",
     "license": "ISC",
     "devDependencies": {
+        "@types/react": "^18.0.28",
+        "@types/react-dom": "^18.0.11",
         "copy-webpack-plugin": "^11.0.0",
         "css-loader": "^6.7.3",
         "eslint": "^8.33.0",
