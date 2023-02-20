@@ -9,6 +9,7 @@ const App = function () {
     const [category, setCategory] = React.useState(data[0]);
     const [volume, setVolume] = React.useState(0.5);
     const [playing, setPlaying] = React.useState(false);
+    const [paused, setPaused] = React.useState(false);
 
     const getRamdomMusic = (array) => {
         return array[Math.floor(Math.random() * array.length)];
@@ -23,9 +24,11 @@ const App = function () {
         if (audio.paused) {
             audio.play();
             setPlaying(true);
+            setPaused(false);
         } else {
             audio.pause();
             setPlaying(false);
+            setPaused(true);
         }
     };
 
@@ -35,6 +38,7 @@ const App = function () {
             pause();
         } else {
             playRandomMusicFromCaregory(musicCategory);
+            setPaused(false);
         }
     };
 
@@ -75,11 +79,13 @@ const App = function () {
                                     " " +
                                     (playing && item.id === category.id
                                         ? "playing"
+                                        : "") +
+                                    (paused && item.id === category.id
+                                        ? "paused"
                                         : "")
                                 }
                                 onClick={() => selectCategory(item)}
-                            >
-                            </div>
+                            ></div>
                         );
                     })}
                 </div>
