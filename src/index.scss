@@ -70,10 +70,11 @@ h1 {
             background-size: auto 100%;
             background-position: center center;
             cursor: pointer;
-            transition: all 0.9s ease-out;
+            transition: all 0.3s ease-out;
         }
         div:hover {
             background-size: auto 200%;
+            transition: all 3s ease-out;
         }
         div::after {
             display: block;
@@ -92,6 +93,9 @@ h1 {
         }
         .icon-snow::after {
             background-image: url("./assets/icons/cloud-snow.svg");
+        }
+        .paused::after  {
+            background-image: url("./assets/icons/pause.svg");
         }
     }
 }
