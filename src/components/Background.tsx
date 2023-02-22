@@ -1,5 +1,8 @@
 import * as React from "react";
-const Background = function ({ value }: { value: string }) {
+type Props = {
+    value: string;
+};
+const Background: React.FunctionComponent<Props> = function ({ value }) {
     return <div className={"main-app-bg " + value}></div>;
 };
 

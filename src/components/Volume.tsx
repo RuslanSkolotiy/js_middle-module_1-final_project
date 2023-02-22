@@ -1,5 +1,9 @@
 import * as React from "react";
-const Volume = function ({ onChange }: { onChange: (value: number) => void }) {
+type Props = {
+    onChange: (value: number) => void;
+};
+
+const Volume: React.FunctionComponent<Props> = function ({ onChange }) {
     return (
         <div className="volume">
             <div>Volume</div>

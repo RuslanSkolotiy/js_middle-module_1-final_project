@@ -15,22 +15,24 @@ type MusicCategory = {
     music: string[];
 };
 
-const App = function () {
-    const [category, setCategory] = React.useState(data[0]);
-    const [volume, setVolume] = React.useState(0.5);
-    const [playing, setPlaying] = React.useState(false);
-    const [paused, setPaused] = React.useState(false);
+const App: React.FunctionComponent = function () {
+    const [category, setCategory] = React.useState<MusicCategory>(data[0]);
+    const [volume, setVolume] = React.useState<number>(0.5);
+    const [playing, setPlaying] = React.useState<boolean>(false);
+    const [paused, setPaused] = React.useState<boolean>(false);
 
-    const getRamdomMusic = (array: string[]) => {
+    const getRamdomMusic = (array: string[]): string => {
         return array[Math.floor(Math.random() * array.length)];
     };
 
-    const playRandomMusicFromCaregory = (musicCategory: MusicCategory) => {
+    const playRandomMusicFromCaregory = (
+        musicCategory: MusicCategory
+    ): void => {
         audio.pause();
         audio.src = getRamdomMusic(musicCategory.music);
     };
 
-    const pause = () => {
+    const pause = (): void => {
         if (audio.paused) {
             audio.play();
             setPlaying(true);
@@ -42,7 +44,7 @@ const App = function () {
         }
     };
 
-    const selectCategory = (musicCategory: MusicCategory) => {
+    const selectCategory = (musicCategory: MusicCategory): void => {
         setCategory(musicCategory);
         if (musicCategory.id === category.id && audio.readyState >= 2) {
             pause();
